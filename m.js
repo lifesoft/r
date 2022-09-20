@@ -32,7 +32,7 @@
             //         console.log(element)
             //     })
 
-            document.write(request.responseText.replace(/(src=")((?!http))/g, '$1https://test.storestack.io/'));
+            document.write(request.responseText.replace(/((src|href)=")((?!http))/g, '$1https://test.storestack.io/'));
 
             document.close();
         }
