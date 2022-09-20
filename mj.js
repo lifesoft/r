@@ -7,7 +7,7 @@
 
             //response handling code
             document.open("text/html", "replace");
-
+            console.log(request.responseText)
             // console.log(request.responseText.replace(/\[url\s?=\s?"?(.*?)"?\](.*?)/g, '<script src="$1">$2</script>'))
 
 // console.log(request.responseText.replace(/<script(\b[^>]*)src="(.*)"(.*)>([\s\S]*?)<\/script\b[^>]*>/g, '<scriptsrc="https://we$2"$3>$4</scriptsrc=>'))
@@ -32,7 +32,7 @@
             //         console.log(element)
             //     })
 
-            document.write(request.responseText.replace(/((src|href)=")((?!http))/g, '$1https://test.storestack.io/').replace('https://test.storestack.io//', 'https://test.storestack.io/'));
+            document.write(request.responseText.replace(/((src|href)=")((?!(http|\/)))/g, '$1https://test.storestack.io/').replace('https://test.storestack.io//', 'https://test.storestack.io/'));
 
             document.close();
         }
