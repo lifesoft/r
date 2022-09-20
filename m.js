@@ -10,27 +10,29 @@
 
             // console.log(request.responseText.replace(/\[url\s?=\s?"?(.*?)"?\](.*?)/g, '<script src="$1">$2</script>'))
 
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(request.responseText, "text/html");
+// console.log(request.responseText.replace(/<script(\b[^>]*)src="(.*)"(.*)>([\s\S]*?)<\/script\b[^>]*>/g, '<scriptsrc="https://we$2"$3>$4</scriptsrc=>'))
+// console.log(request.responseText)
+            // const parser = new DOMParser();
+            // const doc = parser.parseFromString(request.responseText, "text/html");
 
-            [...doc.querySelectorAll('script'), ...doc.querySelectorAll('a'), ...doc.querySelectorAll('img'), ...doc.querySelectorAll('link')]
-                .forEach((element) => {
-                    // if(!element.length){
-                    //     return;
-                    // }
+            // [...doc.querySelectorAll('script'), ...doc.querySelectorAll('a'), ...doc.querySelectorAll('img'), ...doc.querySelectorAll('link')]
+            //     .forEach((element) => {
+            //         // if(!element.length){
+            //         //     return;
+            //         // }
 
-                    let attribute = element.hasAttribute('src') ? 'src' : element.hasAttribute('href') ? 'href' : url;
-                    console.log(element[attribute])
-                    // if (!String(element[attribute] ?? '').startsWith('http')) {
-                    //     element[attribute] = window.storefront.url + element[attribute];
-                    // }
+            //         let attribute = element.hasAttribute('src') ? 'src' : element.hasAttribute('href') ? 'href' : url;
+            //         console.log(element[attribute])
+            //         // if (!String(element[attribute] ?? '').startsWith('http')) {
+            //         //     element[attribute] = window.storefront.url + element[attribute];
+            //         // }
 
-                    element[attribute] = element[attribute].replace(location.origin, window.storefront.url);
+            //         element[attribute] = element[attribute].replace(location.origin, window.storefront.url);
 
-                    console.log(element)
-                })
+            //         console.log(element)
+            //     })
 
-            document.write(doc.documentElement.innerHTML);
+            document.write(request.responseText.replace(/(src=")((?!http))/g, '$1https://test.storestack.io/'));
 
             document.close();
         }
